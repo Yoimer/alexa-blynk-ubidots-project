@@ -42,11 +42,14 @@ GPIO.setup(19,GPIO.OUT)
 # set pin 26 as output (KITCHEN LIGHT)
 GPIO.setup(26,GPIO.OUT)
 
+# set pin 12 as output (AC)
+GPIO.setup(12,GPIO.OUT)
+
 while True:
     #reads humidity and temperature
     humidity, temperature = Adafruit_DHT.read(DHT_SENSOR, DHT_PIN)
 
-    user_input = input("Please enter any of the following commands: \n TEMP \n HUMD \n OPEN \n CLOSE \n STARTFAN \n STOPFAN \n TURNOUTDLIGHTON \n TURNOUTDLIGHTOFF \n TURNONLRL \n TURNOFFLRL \n TURNBRLON \n TURNBRLOFF \n TURNKLON \n TURNKLOFF: ")
+    user_input = input("Please enter any of the following commands: \n TEMP \n HUMD \n OPEN \n CLOSE \n STARTFAN \n STOPFAN \n TURNOUTDLIGHTON \n TURNOUTDLIGHTOFF \n TURNONLRL \n TURNOFFLRL \n TURNBRLON \n TURNBRLOFF \n TURNKLON \n TURNKLOFF \n TURNACON \n TURNACOFF: ")
 
     # if input is HUMD, prints humidity
     if(user_input == "HUMD"):
@@ -125,6 +128,16 @@ while True:
     elif(user_input == "TURNKLOFF"):
         print("Turning kitchen light off")
         GPIO.output(26,GPIO.LOW)
+
+    # if input is TURNACON, turns on AC
+    elif(user_input == "TURNACON"):
+        print("Turning AC On")
+        GPIO.output(12,GPIO.HIGH)
+
+    # if input is TURNACOFF, turns off AC
+    elif(user_input == "TURNACOFF"):
+        print("Turning AC Off")
+        GPIO.output(12,GPIO.LOW)
 
     else:
         print("Unrecognized input")
