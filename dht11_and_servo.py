@@ -27,14 +27,17 @@ import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
-# set pin 5 as output
+# set pin 5 as output (FAN)
 GPIO.setup(5,GPIO.OUT)
+
+# set pin 6 as output (OUTDOOR LIGHT)
+GPIO.setup(6,GPIO.OUT)
 
 while True:
     #reads humidity and temperature
     humidity, temperature = Adafruit_DHT.read(DHT_SENSOR, DHT_PIN)
 
-    user_input = input("Please enter any of the following commands: \n TEMP \n HUMD \n OPEN \n CLOSE \n STARTFAN \n STOPFAN: ")
+    user_input = input("Please enter any of the following commands: \n TEMP \n HUMD \n OPEN \n CLOSE \n STARTFAN \n STOPFAN \n TURNOUTDLIGHTON \n TURNOUTDLIGHTOFF: ")
 
     # if input is HUMD, prints humidity
     if(user_input == "HUMD"):
@@ -73,6 +76,16 @@ while True:
     elif(user_input == "STOPFAN"):
         print("Stopping Fan")
         GPIO.output(5,GPIO.LOW)
+
+    # if input is TURNOUTLIGHTON, turns on outdoor light
+    elif(user_input == "TURNOUTDLIGHTON"):
+        print("Turning Outdoor Light ON")
+        GPIO.output(6,GPIO.HIGH)
+
+    # if input is TURNOUTLIGHTOFF, turns off outdoor light
+    elif(user_input == "TURNOUTDLIGHTOFF"):
+        print("Turning Outdoor Light OFF")
+        GPIO.output(6,GPIO.LOW)
 
     else:
         print("Unrecognized input")
