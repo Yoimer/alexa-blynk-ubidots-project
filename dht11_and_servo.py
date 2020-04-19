@@ -45,11 +45,14 @@ GPIO.setup(26,GPIO.OUT)
 # set pin 12 as output (AC)
 GPIO.setup(12,GPIO.OUT)
 
+# set pin 16 as output (KETTEL)
+GPIO.setup(16,GPIO.OUT)
+
 while True:
     #reads humidity and temperature
     humidity, temperature = Adafruit_DHT.read(DHT_SENSOR, DHT_PIN)
 
-    user_input = input("Please enter any of the following commands: \n TEMP \n HUMD \n OPEN \n CLOSE \n STARTFAN \n STOPFAN \n TURNOUTDLIGHTON \n TURNOUTDLIGHTOFF \n TURNONLRL \n TURNOFFLRL \n TURNBRLON \n TURNBRLOFF \n TURNKLON \n TURNKLOFF \n TURNACON \n TURNACOFF: ")
+    user_input = input("Please enter any of the following commands: \n TEMP \n HUMD \n OPEN \n CLOSE \n STARTFAN \n STOPFAN \n TURNOUTDLIGHTON \n TURNOUTDLIGHTOFF \n TURNONLRL \n TURNOFFLRL \n TURNBRLON \n TURNBRLOFF \n TURNKLON \n TURNKLOFF \n TURNACON \n TURNACOFF \n TURNKTON \n TURNKTOFF: ")
 
     # if input is HUMD, prints humidity
     if(user_input == "HUMD"):
@@ -138,6 +141,16 @@ while True:
     elif(user_input == "TURNACOFF"):
         print("Turning AC Off")
         GPIO.output(12,GPIO.LOW)
+
+    # if input is TURNKTON, turns on TURNKTON
+    elif(user_input == "TURNKTON"):
+        print("Turning Kettel On")
+        GPIO.output(16,GPIO.HIGH)
+
+    # if input is TURNKTOFF, turns on TURNKTOFF
+    elif(user_input == "TURNKTOFF"):
+        print("Turning Kettel Off")
+        GPIO.output(16,GPIO.LOW)
 
     else:
         print("Unrecognized input")
