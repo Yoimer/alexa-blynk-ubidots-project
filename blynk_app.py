@@ -1,19 +1,37 @@
-import BlynkLib
-import time
+import blynklib
+# import blynklib_mp as blynklib # micropython import
 
+BLYNK_AUTH = 'le9rpH-BRPegN-WFH9GLFaqB5lcwwTmA' #insert your Auth Token here
+# base lib init
+blynk = blynklib.Blynk(BLYNK_AUTH)
+ 
+# advanced options of lib init
+# from __future__ import print_function
+# blynk = blynklib.Blynk(BLYNK_AUTH, server='blynk-cloud.com', port=80, ssl_cert=None,
+#                        heartbeat=10, rcv_buffer=1024, log=print)
 
-# Initialize Blynk
-blynk = BlynkLib.Blynk('tmLWrD3ntcQdZ7Pzg3rujYgQDzIOVdqk')
+# Lib init with SSL socket connection
+# blynk = blynklib.Blynk(BLYNK_AUTH, port=443, ssl_cert='<path to local blynk server certificate>')
+# current blynk-cloud.com certificate stored in project as 
+# https://github.com/blynkkk/lib-python/blob/master/certificate/blynk-cloud.com.crt
+# Note! ssl feature supported only by cPython
 
-# Register Virtual Pins
-@blynk.VIRTUAL_WRITE(1)
-def my_write_handler(value):
-    print('Current V1 value: {}'.format(value))
+# register handler for Virtual Pin V22 reading by Blynk App.
+# when a widget in Blynk App asks Virtual Pin data from server within given configurable interval (1,2,5,10 sec etc) 
+# server automatically sends notification about read virtual pin event to hardware
+# this notification captured by current handler 
+@blynk.handle_event('read V22')
+def read_virtual_pin_handler(pin):
+    
+    # your code goes here
+    # ...
+    # Example: get sensor value, perform calculations, etc
+    sensor_data = '808080'
+    # critilcal_data_value = '<YourThresholdSensorValue>'
+        
+    # send value to Virtual Pin and store it in Blynk Cloud 
+    blynk.virtual_write(pin, sensor_data)
 
-@blynk.VIRTUAL_READ(2)
-def my_read_handler():
-    # this widget will show some time in seconds..
-    blynk.virtual_write(2, int(time.time()))
-
+# main loop that starts program and handles registered events
 while True:
     blynk.run()
