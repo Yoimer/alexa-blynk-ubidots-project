@@ -94,6 +94,19 @@ def write_virtual_pin_handler(pin, value):
         print("Starting Fan")
         GPIO.output(5,GPIO.HIGH)
 
+# set pin 6 as output (OUTDOOR LIGHT)
+WRITE_EVENT_PRINT_MSG = "[WRITE_VIRTUAL_PIN_EVENT] Pin: V{} Value: '{}'"
+# register handler for virtual pin V3 write event
+@blynk.handle_event('write V3')
+def write_virtual_pin_handler(pin, value):
+    print(WRITE_EVENT_PRINT_MSG.format(pin, value))
+    if value == ['0']:
+        print("Turning Outdoor Light ON")
+        GPIO.output(6,GPIO.LOW)
+    elif value == ['1']:
+        print("Turning Outdoor Light ON")
+        GPIO.output(6,GPIO.HIGH)
+
 # main loop that starts program and handles registered events
 while True:
     blynk.run()
