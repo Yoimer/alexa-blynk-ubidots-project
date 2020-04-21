@@ -81,6 +81,19 @@ def read_humidity(pin):
         # send value to Virtual Pin and store it in Blynk Cloud 
         blynk.virtual_write(pin, humidity)
 
+# control FAN relay (pin 5)
+WRITE_EVENT_PRINT_MSG = "[WRITE_VIRTUAL_PIN_EVENT] Pin: V{} Value: '{}'"
+# register handler for virtual pin V2 write event
+@blynk.handle_event('write V2')
+def write_virtual_pin_handler(pin, value):
+    print(WRITE_EVENT_PRINT_MSG.format(pin, value))
+    if value == ['0']:
+        print("Stopping Fan")
+        GPIO.output(5,GPIO.LOW)
+    elif value == ['1']:
+        print("Starting Fan")
+        GPIO.output(5,GPIO.HIGH)
+
 # main loop that starts program and handles registered events
 while True:
     blynk.run()
