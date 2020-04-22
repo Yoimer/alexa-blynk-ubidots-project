@@ -172,6 +172,23 @@ def write_virtual_pin_handler(pin, value):
         print("Turning Kettel ON")
         GPIO.output(16,GPIO.HIGH)
 
+# control servo - open - close (pin 18)
+WRITE_EVENT_PRINT_MSG = "[WRITE_VIRTUAL_PIN_EVENT] Pin: V{} Value: '{}'"
+# register handler for virtual pin V9 write event
+@blynk.handle_event('write V9')
+def write_virtual_pin_handler(pin, value):
+    print(WRITE_EVENT_PRINT_MSG.format(pin, value))
+    if value == ['0']:
+        print("Closing Servo...")
+        for pulse in range(220, 100, -1):
+            wiringpi.pwmWrite(18, pulse)
+            time.sleep(delay_period)
+    elif value == ['1']:
+        print("Opening Servo...")
+        for pulse in range(100, 220, 1):
+            wiringpi.pwmWrite(18, pulse)
+            time.sleep(delay_period)
+
 # main loop that starts program and handles registered events
 while True:
     blynk.run()
