@@ -94,7 +94,7 @@ def write_virtual_pin_handler(pin, value):
         print("Starting Fan")
         GPIO.output(5,GPIO.HIGH)
 
-# set pin 6 as output (OUTDOOR LIGHT)
+# contrl OUTDOOR LIGHT (pin 6)
 WRITE_EVENT_PRINT_MSG = "[WRITE_VIRTUAL_PIN_EVENT] Pin: V{} Value: '{}'"
 # register handler for virtual pin V3 write event
 @blynk.handle_event('write V3')
@@ -106,6 +106,71 @@ def write_virtual_pin_handler(pin, value):
     elif value == ['1']:
         print("Turning Outdoor Light ON")
         GPIO.output(6,GPIO.HIGH)
+
+# control LIVING ROOM LIGHT (pin 13)
+WRITE_EVENT_PRINT_MSG = "[WRITE_VIRTUAL_PIN_EVENT] Pin: V{} Value: '{}'"
+# register handler for virtual pin V4 write event
+@blynk.handle_event('write V4')
+def write_virtual_pin_handler(pin, value):
+    print(WRITE_EVENT_PRINT_MSG.format(pin, value))
+    if value == ['0']:
+        print("Turning Living Room Light OFF")
+        GPIO.output(13,GPIO.LOW)
+    elif value == ['1']:
+        print("Turning Living Room Light ON")
+        GPIO.output(13,GPIO.HIGH)
+
+# control BED ROOM LIGHT (pin 19)
+WRITE_EVENT_PRINT_MSG = "[WRITE_VIRTUAL_PIN_EVENT] Pin: V{} Value: '{}'"
+# register handler for virtual pin V5 write event
+@blynk.handle_event('write V5')
+def write_virtual_pin_handler(pin, value):
+    print(WRITE_EVENT_PRINT_MSG.format(pin, value))
+    if value == ['0']:
+        print("Turning Bed Room Light OFF")
+        GPIO.output(19,GPIO.LOW)
+    elif value == ['1']:
+        print("Turning Bed Room Light ON")
+        GPIO.output(19,GPIO.HIGH)
+
+# control KITCHEN LIGHT (pin 26)
+WRITE_EVENT_PRINT_MSG = "[WRITE_VIRTUAL_PIN_EVENT] Pin: V{} Value: '{}'"
+# register handler for virtual pin V6 write event
+@blynk.handle_event('write V6')
+def write_virtual_pin_handler(pin, value):
+    print(WRITE_EVENT_PRINT_MSG.format(pin, value))
+    if value == ['0']:
+        print("Turning Kitchen Light OFF")
+        GPIO.output(26,GPIO.LOW)
+    elif value == ['1']:
+        print("Turning Kitchen Light ON")
+        GPIO.output(26,GPIO.HIGH)
+
+# control AC (pin 12)
+WRITE_EVENT_PRINT_MSG = "[WRITE_VIRTUAL_PIN_EVENT] Pin: V{} Value: '{}'"
+# register handler for virtual pin V6 write event
+@blynk.handle_event('write V7')
+def write_virtual_pin_handler(pin, value):
+    print(WRITE_EVENT_PRINT_MSG.format(pin, value))
+    if value == ['0']:
+        print("Turning AC OFF")
+        GPIO.output(12,GPIO.LOW)
+    elif value == ['1']:
+        print("Turning AC ON")
+        GPIO.output(12,GPIO.HIGH)
+
+# control KETTEL (pin 16)
+WRITE_EVENT_PRINT_MSG = "[WRITE_VIRTUAL_PIN_EVENT] Pin: V{} Value: '{}'"
+# register handler for virtual pin V6 write event
+@blynk.handle_event('write V8')
+def write_virtual_pin_handler(pin, value):
+    print(WRITE_EVENT_PRINT_MSG.format(pin, value))
+    if value == ['0']:
+        print("Turning Kettel OFF")
+        GPIO.output(16,GPIO.LOW)
+    elif value == ['1']:
+        print("Turning Kettel ON")
+        GPIO.output(16,GPIO.HIGH)
 
 # main loop that starts program and handles registered events
 while True:
