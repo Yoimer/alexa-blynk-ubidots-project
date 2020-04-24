@@ -1,0 +1,53 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "blynk app",
+            "modelConfiguration": {
+                "fallbackIntentSensitivity": {
+                    "level": "LOW"
+                }
+            },
+            "intents": [
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": [
+                        "forget it",
+                        "never mind",
+                        "cancel"
+                    ]
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": [
+                        "ask blynk app for help",
+                        "help"
+                    ]
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": [
+                        "stop"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "TemperatureIntent",
+                    "slots": [],
+                    "samples": [
+                        "temperature value",
+                        "temperature",
+                        "ask blynk app for temperature"
+                    ]
+                }
+            ],
+            "types": []
+        }
+    }
+}

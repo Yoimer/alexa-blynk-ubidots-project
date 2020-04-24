@@ -1,0 +1,16 @@
+--------temperatureIntent
+temperature
+temperature value
+ask blynk app for temperature
+
+-------stopIntent
+stop
+
+-------HelpIntent
+help
+ask blynk app for help
+
+---CancelIntent
+forget it
+cancel
+never mind
