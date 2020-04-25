@@ -53,6 +53,28 @@
                         "get humidity from derby uni project",
                         "humidity"
                     ]
+                },
+                {
+                    "name": "StartFanIntent",
+                    "slots": [],
+                    "samples": [
+                        "turn on the fan",
+                        "turn on fan",
+                        "activate fan",
+                        "start fan",
+                        "fan"
+                    ]
+                },
+                {
+                    "name": "StopFanIntent",
+                    "slots": [],
+                    "samples": [
+                        "turn the fan off",
+                        "turn off the fan",
+                        "stop the fan",
+                        "deactive the fan",
+                        "stop fan"
+                    ]
                 }
             ],
             "types": []

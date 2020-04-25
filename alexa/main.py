@@ -14,6 +14,14 @@ import Adafruit_DHT
 DHT_SENSOR = Adafruit_DHT.DHT11
 DHT_PIN = 27
 
+# gpio libraries
+import RPi.GPIO as GPIO
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+
+# set pin 5 as output (FAN)
+GPIO.setup(5,GPIO.OUT)
+
 ######################################
 # Skill name: derby uni project
 # Invocation Name : derby uni project
@@ -60,12 +68,27 @@ def humidity():
         print("Sensor failure. Check wiring.")
         return statement("Sensor failure. Please check wiring.")
 
+@ask.intent("StartFanIntent")
+# turns fan on
+def turnsfanon():
+    print("Starting Fan")
+    GPIO.output(5,GPIO.HIGH)
+    return statement("Turning fan on")
+
+@ask.intent("StopFanIntent")
+# turns fan off
+def turnsfanoff():
+    print("Stopping Fan")
+    GPIO.output(5,GPIO.LOW)
+    return statement("Turning fan off")
+
+# stop
 @ask.intent("AMAZON.StopIntent")
 # stops the skill
 def stop():
     return statement("Stopping the skill")
 
-# does not match any country in LIST_OF_COUNTRIES
+# if user does not match any intent, system goes here
 @ask.intent("AMAZON.FallbackIntent")
 def fallback():
     fallback_msg = 'I can not help you with that, try any of the options available for this app'
