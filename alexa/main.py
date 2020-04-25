@@ -60,6 +60,11 @@ def humidity():
         print("Sensor failure. Check wiring.")
         return statement("Sensor failure. Please check wiring.")
 
+@ask.intent("AMAZON.StopIntent")
+# stops the skill
+def stop():
+    return statement("Stopping the skill")
+
 # does not match any country in LIST_OF_COUNTRIES
 @ask.intent("AMAZON.FallbackIntent")
 def fallback():
@@ -69,8 +74,8 @@ def fallback():
 # ask for help when welcoming or anytime
 @ask.intent("AMAZON.HelpIntent")
 def help():
-    help_msg = "Ok, I am going to help you... Please, tell me which country or currency would you like me to calculate the exchange?"
-    reprompt_msg  = 'Please, tell me which country or currency would you like me to calculate the exchange?'
+    help_msg = "Ok, I am going to help you... I can tell you the temperature value or turn on the fan. Which option do you prefer?"
+    reprompt_msg  = 'Please, tell me do you want me to give the temperature value of want to turn on fan?'
     #return statement(help_msg)
     return question(help_msg).reprompt(reprompt_msg)
 
