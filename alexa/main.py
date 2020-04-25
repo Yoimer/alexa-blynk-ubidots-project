@@ -15,19 +15,19 @@ DHT_SENSOR = Adafruit_DHT.DHT11
 DHT_PIN = 27
 
 ######################################
-# Skill name: blynk app
-# Invocation Name : blynk app
+# Skill name: derby uni project
+# Invocation Name : derby uni project
 
 ##########launch skill##########
 # voice commands are:
-#Alexa, start blynk app
-#Alexa, open blynk app
-#Alexa, begin blynk app
-#Alexa, blynk app
-#Alexa, load blynk app
-#Alexa, run blynk app
-#Alexa, use blynk app
-#Alexa, tell blynk app (This one makes no sense for the context of this skill. It works
+#Alexa, start derby uni project
+#Alexa, open derby uni project
+#Alexa, begin derby uni project
+#Alexa, derby uni project
+#Alexa, load derby uni project
+#Alexa, run derby uni project
+#Alexa, use derby uni project
+#Alexa, tell derby uni project (This one makes no sense for the context of this skill. It works
                             # if invoking though)
 
 ##########launch skill##########
@@ -36,15 +36,26 @@ DHT_PIN = 27
 def launch_app():
     welcome_msg = render_template('welcome')
     prompt = 'Which option do you prefer man?'
-    return question(welcome_msg).reprompt(prompt).simple_card('Welcome to blynk app', welcome_msg)
+    return question(welcome_msg).reprompt(prompt).simple_card('Welcome to derby uni project', welcome_msg)
 
 @ask.intent("TemperatureIntent")
-# get humidity from sensor
+# get temperature from sensor
 def temperature():
     humidity, temperature = Adafruit_DHT.read(DHT_SENSOR, DHT_PIN)
     if temperature is not None:
         print("Temperature = {} °C".format(temperature))
         return statement("Temperature value is {} Celsius degrees".format(temperature))
+    else:
+        print("Sensor failure. Check wiring.")
+        return statement("Sensor failure. Please check wiring.")
+
+@ask.intent("HumidityIntent")
+# get humidity from sensor
+def humidity():
+    humidity, temperature = Adafruit_DHT.read(DHT_SENSOR, DHT_PIN)
+    if humidity is not None:
+        print("Humidity = {} %".format(humidity))
+        return statement("Humidity value is {} Percentage".format(humidity))
     else:
         print("Sensor failure. Check wiring.")
         return statement("Sensor failure. Please check wiring.")

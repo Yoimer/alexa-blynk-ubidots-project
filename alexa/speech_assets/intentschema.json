@@ -1,7 +1,7 @@
 {
     "interactionModel": {
         "languageModel": {
-            "invocationName": "blynk app",
+            "invocationName": "derby uni project",
             "modelConfiguration": {
                 "fallbackIntentSensitivity": {
                     "level": "LOW"
@@ -23,7 +23,7 @@
                 {
                     "name": "AMAZON.HelpIntent",
                     "samples": [
-                        "ask blynk app for help",
+                        "ask derby uni project for help",
                         "help"
                     ]
                 },
@@ -43,7 +43,15 @@
                     "samples": [
                         "temperature value",
                         "temperature",
-                        "ask blynk app for temperature"
+                        "ask derby uni project for temperature"
+                    ]
+                },
+                {
+                    "name": "HumidityIntent",
+                    "slots": [],
+                    "samples": [
+                        "get humidity from derby uni project",
+                        "humidity"
                     ]
                 }
             ],

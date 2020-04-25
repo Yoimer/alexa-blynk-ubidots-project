@@ -1,14 +1,18 @@
 --------temperatureIntent
 temperature
 temperature value
-ask blynk app for temperature
+ask derby uni project for temperature
+
+--------humidityIntent
+humidity
+get humidity from derby uni project
 
 -------stopIntent
 stop
 
 -------HelpIntent
 help
-ask blynk app for help
+ask derby uni project for help
 
 ---CancelIntent
 forget it
