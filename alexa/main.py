@@ -105,8 +105,7 @@ def turnsfanoff():
         GPIO.output(5,GPIO.LOW)
         return statement("Turning fan off")
 
-
-@ask.intent("StartOutDoorLightIntent")
+@ask.intent("TurnOnOutDoorLightIntent")
 # turns Outdoor Light on
 def outdoorlighton():
     if(save_outdoor_light_state[0] == 1):
@@ -118,7 +117,7 @@ def outdoorlighton():
         GPIO.output(6,GPIO.HIGH)
         return statement("Turning Outdoor Light ON")
 
-@ask.intent("StopOutDoorLightIntent")
+@ask.intent("TurnOffOutDoorLightIntent")
 # turns Outdoor Light off
 def outdoorlightoff():
     if(save_outdoor_light_state[0] == 0):

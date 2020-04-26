@@ -71,14 +71,14 @@
                     ]
                 },
                 {
-                    "name": "StartOutDoorLightIntent",
+                    "name": "TurnOnOutDoorLightIntent",
                     "slots": [],
                     "samples": [
                         "alexa ask derby uni project to turn on the outdoor light"
                     ]
                 },
                 {
-                    "name": "StopOutDoorLightIntent",
+                    "name": "TurnOffOutDoorLightIntent",
                     "slots": [],
                     "samples": [
                         "alexa ask derby uni project to turn off the outdoor light"
