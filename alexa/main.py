@@ -241,29 +241,29 @@ def kitchenlightoff():
         GPIO.output(26,GPIO.LOW)
         return statement("Turning Kitchen Light off")
 
-# @ask.intent("TurnOnAcIntent")
-# # turns AC on
-# def acon():
-#     if(save_ac_state[0] == 1):
-#         print("AC is already ON. Not action taken.")
-#         return statement("AC is already ON. Not action taken.")
-#     else:
-#         save_ac_state[0] = 1
-#         print("Turning AC ON")
-#         GPIO.output(12,GPIO.HIGH)
-#         return statement("Turning AC ON")
+@ask.intent("TurnOnAcIntent")
+# turns AC on
+def acon():
+    if(save_ac_state[0] == 1):
+        print("AC is already ON. Not action taken.")
+        return statement("AC is already ON. Not action taken.")
+    else:
+        save_ac_state[0] = 1
+        print("Turning AC ON")
+        GPIO.output(12,GPIO.HIGH)
+        return statement("Turning AC ON")
 
-# @ask.intent("TurnOffAcIntent")
-# # turns AC off
-# def acoff():
-#     if(save_ac_state[0] == 0):
-#         print("Turning AC OFF")
-#         return statement("AC is already OFF. Not action taken.")
-#     else:
-#         save_ac_state[0] = 0
-#         print("Stopping AC")
-#         GPIO.output(12,GPIO.LOW)
-#         return statement("Turning AC off")
+@ask.intent("TurnOffAcIntent")
+# turns AC off
+def acoff():
+    if(save_ac_state[0] == 0):
+        print("Turning AC OFF")
+        return statement("AC is already OFF. Not action taken.")
+    else:
+        save_ac_state[0] = 0
+        print("Stopping AC")
+        GPIO.output(12,GPIO.LOW)
+        return statement("Turning AC off")
 
 
 @ask.intent("TurnOnKettelIntent")
