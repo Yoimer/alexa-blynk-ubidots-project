@@ -51,10 +51,7 @@
                     "name": "HumidityIntent",
                     "slots": [],
                     "samples": [
-                        "alexa ask derby uni project for humidity",
-                        "ask derby uni project for humidity",
-                        "get humidity from derby uni project",
-                        "humidity"
+                        "alexa ask derby uni project for humidity"
                     ]
                 },
                 {

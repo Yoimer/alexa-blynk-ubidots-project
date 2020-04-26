@@ -1,6 +1,7 @@
 --------temperatureIntent
-temperature
+alexa ask derby uni project for temperature
 temperature value
+temperature
 ask derby uni project for temperature
 
 --------humidityIntent
@@ -8,21 +9,11 @@ humidity
 get humidity from derby uni project
 
 --------StopFanIntent
-ask derby uni project to turn the fan off
-ask derby uni project to turn off the fan
-turn the fan off
-turn off the fan
-stop the fan
-deactivate the fan
-stop fan
+alexa ask derby uni project to turn off the fan
 
 --------StartFanIntent
-ask derby uni project to turn the fan on
-ask derby uni project to turn on the fan
-turn on fan
-activate fan
-start fan
-fan
+alexa ask derby uni project to turn on the fan,
+turn on the fan
 
 -------stopIntent
 stop
