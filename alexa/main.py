@@ -14,6 +14,11 @@ import Adafruit_DHT
 DHT_SENSOR = Adafruit_DHT.DHT11
 DHT_PIN = 27
 
+# list where fan states will be saved
+save_fan_state = []
+# first index equal 0
+save_fan_state.append(0)
+
 # gpio libraries
 import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM)
@@ -71,16 +76,26 @@ def humidity():
 @ask.intent("StartFanIntent")
 # turns fan on
 def turnsfanon():
-    print("Starting Fan")
-    GPIO.output(5,GPIO.HIGH)
-    return statement("Turning fan on")
+    if(save_fan_state[0] == 1):
+        print("Fan is already ON. Not action taken.")
+        return statement("Fan is already ON. Not action taken.")
+    else:
+        save_fan_state[0] = 1
+        print("Starting Fan")
+        GPIO.output(5,GPIO.HIGH)
+        return statement("Turning fan on")
 
 @ask.intent("StopFanIntent")
 # turns fan off
 def turnsfanoff():
-    print("Stopping Fan")
-    GPIO.output(5,GPIO.LOW)
-    return statement("Turning fan off")
+    if(save_fan_state[0] == 0):
+        print("Fan is already OFF. Not action taken.")
+        return statement("Fan is already OFF. Not action taken.")
+    else:
+        save_fan_state[0] = 0
+        print("Stopping Fan")
+        GPIO.output(5,GPIO.LOW)
+        return statement("Turning fan off")
 
 # stop
 @ask.intent("AMAZON.StopIntent")
