@@ -24,6 +24,16 @@ save_outdoor_light_state = []
 # first index equal
 save_outdoor_light_state.append(0)
 
+# list where livingroom_light_state  will be saved
+save_livingroom_light_state = []
+# first index equal 0
+save_livingroom_light_state.append(0)
+
+# list where save_bedroom_light_state  will be saved
+save_bedroom_light_state = []
+# first index equal 0
+save_bedroom_light_state.append(0)
+
 # gpio libraries
 import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM)
@@ -34,6 +44,12 @@ GPIO.setup(5,GPIO.OUT)
 
 # set pin 6 as output (OUTDOOR LIGHT)
 GPIO.setup(6,GPIO.OUT)
+
+# set pin 13 as output (LIVING ROOM LIGHT)
+GPIO.setup(13,GPIO.OUT)
+
+# set pin 19 as output (BED ROOM LIGHT)
+GPIO.setup(19,GPIO.OUT)
 
 ######################################
 # Skill name: derby uni project
@@ -128,6 +144,55 @@ def outdoorlightoff():
         print("Stopping Outdoor Light")
         GPIO.output(6,GPIO.LOW)
         return statement("Turning Outdoor Light off")
+
+
+@ask.intent("TurnOnLivingRoomLightIntent")
+# turns Living Room Light on
+def livingroomlighton():
+    if(save_livingroom_light_state[0] == 1):
+        print("Living Room Light is already ON. Not action taken.")
+        return statement("Living Room Light is already ON. Not action taken.")
+    else:
+        save_livingroom_light_state[0] = 1
+        print("Turning Living Room Light ON")
+        GPIO.output(13,GPIO.HIGH)
+        return statement("Turning Living Room Light ON")
+
+@ask.intent("TurnOffLivingRoomLightIntent")
+# turns Living Room Light off
+def livingroomlightoff():
+    if(save_livingroom_light_state[0] == 0):
+        print("Turning Living Room Light OFF")
+        return statement("Living Room Light is already OFF. Not action taken.")
+    else:
+        save_livingroom_light_state[0] = 0
+        print("Stopping LivingRoom Light")
+        GPIO.output(13,GPIO.LOW)
+        return statement("Turning LivingRoom Light off")
+
+@ask.intent("TurnOnBedRoomLightIntent")
+# turns Bed Room Light on
+def bedroomlighton():
+    if(save_bedroom_light_state[0] == 1):
+        print("Bed Room Light is already ON. Not action taken.")
+        return statement("Bed Room Light is already ON. Not action taken.")
+    else:
+        save_bedroom_light_state[0] = 1
+        print("Turning Bed Room Light ON")
+        GPIO.output(19,GPIO.HIGH)
+        return statement("Turning Bed Room Light ON")
+
+@ask.intent("TurnOffBedRoomLightIntent")
+# turns Bed Room Light off
+def bedroomlightoff():
+    if(save_bedroom_light_state[0] == 0):
+        print("Turning Bed Room Light OFF")
+        return statement("Bed Room Light is already OFF. Not action taken.")
+    else:
+        save_bedroom_light_state[0] = 0
+        print("Stopping BedRoom Light")
+        GPIO.output(19,GPIO.LOW)
+        return statement("Turning BedRoom Light off")
 
 # stop
 @ask.intent("AMAZON.StopIntent")

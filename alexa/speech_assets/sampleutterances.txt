@@ -26,3 +26,21 @@ ask derby uni project for help
 forget it
 cancel
 never mind
+
+-------TurnOnOutDoorLightIntent
+alexa ask derby uni project to turn on the outdoor light
+
+-------TurnOffOutDoorLightIntent
+alexa ask derby uni project to turn off the outdoor light
+
+-------TurnOnLivingRoomLightIntent
+alexa ask derby uni project to turn on the living room light
+
+-------TurnOffLivingRoomLightIntent
+alexa ask derby uni project to turn off the living room light
+
+-------TurnOnBedRoomLightIntent
+alexa ask derby uni project to turn the bed room light on
+
+-------TurnOffBedRoomLightIntent
+alexa ask derby uni project to turn the bed room light off
