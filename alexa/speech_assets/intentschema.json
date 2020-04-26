@@ -125,6 +125,20 @@
                     "samples": [
                         "alexa ask derby uni project to turn off the kitchen light"
                     ]
+                },
+                {
+                    "name": "TurnOnKettelIntent",
+                    "slots": [],
+                    "samples": [
+                        "alexa ask derby uni project to turn the kettle on"
+                    ]
+                },
+                {
+                    "name": "TurnOffKettelIntent",
+                    "slots": [],
+                    "samples": [
+                        "alexa ask derby uni project to turn off the kettle"
+                    ]
                 }
             ],
             "types": []

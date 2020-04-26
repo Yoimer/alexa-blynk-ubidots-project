@@ -44,6 +44,11 @@ save_ac_state = []
 # first index equal 0
 save_ac_state.append(0)
 
+# list where save_kettel_state will be saved
+save_kettel_state = []
+# first index equal 0
+save_kettel_state.append(0)
+
 # gpio libraries
 import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM)
@@ -66,6 +71,9 @@ GPIO.setup(26,GPIO.OUT)
 
 # set pin 12 as output (AC)
 GPIO.setup(12,GPIO.OUT)
+
+# set pin 16 as output (KETTEL)
+GPIO.setup(16,GPIO.OUT)
 
 ######################################
 # Skill name: derby uni project
@@ -256,6 +264,31 @@ def kitchenlightoff():
 #         print("Stopping AC")
 #         GPIO.output(12,GPIO.LOW)
 #         return statement("Turning AC off")
+
+
+@ask.intent("TurnOnKettelIntent")
+# turns Kettel on
+def kettelon():
+    if(save_kettel_state[0] == 1):
+        print("Kettel is already ON. Not action taken.")
+        return statement("Kettel is already ON. Not action taken.")
+    else:
+        save_kettel_state[0] = 1
+        print("Turning Kettel ON")
+        GPIO.output(16,GPIO.HIGH)
+        return statement("Turning Kettel ON")
+
+@ask.intent("TurnOffKettelIntent")
+# turns Kettel off
+def ketteloff():
+    if(save_kettel_state[0] == 0):
+        print("Kettel is already OFF. Not action taken.")
+        return statement("Kettel is already OFF. Not action taken.")
+    else:
+        save_kettel_state[0] = 0
+        print("Stopping Kettel")
+        GPIO.output(16,GPIO.LOW)
+        return statement("Turning Kettel off")
 
 # stop
 @ask.intent("AMAZON.StopIntent")
