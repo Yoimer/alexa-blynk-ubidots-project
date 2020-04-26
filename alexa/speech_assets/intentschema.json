@@ -69,6 +69,20 @@
                     "samples": [
                         "alexa ask derby uni project to turn off the fan"
                     ]
+                },
+                {
+                    "name": "StartOutDoorLightIntent",
+                    "slots": [],
+                    "samples": [
+                        "alexa ask derby uni project to turn on the outdoor light"
+                    ]
+                },
+                {
+                    "name": "StopOutDoorLightIntent",
+                    "slots": [],
+                    "samples": [
+                        "alexa ask derby uni project to turn off the outdoor light"
+                    ]
                 }
             ],
             "types": []

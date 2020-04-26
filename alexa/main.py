@@ -19,6 +19,11 @@ save_fan_state = []
 # first index equal 0
 save_fan_state.append(0)
 
+# list where outdoor_light states will be saved
+save_outdoor_light_state = []
+# first index equal
+save_outdoor_light_state.append(0)
+
 # gpio libraries
 import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM)
@@ -26,6 +31,9 @@ GPIO.setwarnings(False)
 
 # set pin 5 as output (FAN)
 GPIO.setup(5,GPIO.OUT)
+
+# set pin 6 as output (OUTDOOR LIGHT)
+GPIO.setup(6,GPIO.OUT)
 
 ######################################
 # Skill name: derby uni project
@@ -96,6 +104,31 @@ def turnsfanoff():
         print("Stopping Fan")
         GPIO.output(5,GPIO.LOW)
         return statement("Turning fan off")
+
+
+@ask.intent("StartOutDoorLightIntent")
+# turns Outdoor Light on
+def outdoorlighton():
+    if(save_outdoor_light_state[0] == 1):
+        print("Outdoor Light is already ON. Not action taken.")
+        return statement("Outdoor Light is already ON. Not action taken.")
+    else:
+        save_outdoor_light_state[0] = 1
+        print("Turning Outdoor Light ON")
+        GPIO.output(6,GPIO.HIGH)
+        return statement("Turning Outdoor Light ON")
+
+@ask.intent("StopOutDoorLightIntent")
+# turns Outdoor Light off
+def outdoorlightoff():
+    if(save_outdoor_light_state[0] == 0):
+        print("Turning Outdoor Light OFF")
+        return statement("Outdoor Light is already OFF. Not action taken.")
+    else:
+        save_outdoor_light_state[0] = 0
+        print("Stopping Outdoor Light")
+        GPIO.output(6,GPIO.LOW)
+        return statement("Turning Outdoor Light off")
 
 # stop
 @ask.intent("AMAZON.StopIntent")
