@@ -153,6 +153,22 @@
                     "samples": [
                         "alexa ask derby uni project to turn ac off"
                     ]
+                },
+                {
+                    "name": "OpenIntent",
+                    "slots": [],
+                    "samples": [
+                        "open the door",
+                        "alexa ask derby uni project to open the door"
+                    ]
+                },
+                {
+                    "name": "CloseIntent",
+                    "slots": [],
+                    "samples": [
+                        "close the door",
+                        "alexa ask derby uni project to close the door"
+                    ]
                 }
             ],
             "types": []

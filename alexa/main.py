@@ -49,6 +49,16 @@ save_kettel_state = []
 # first index equal 0
 save_kettel_state.append(0)
 
+# list where save_open_state will be saved
+save_open_state = []
+# first index equal 0
+save_open_state.append(0)
+
+# list where save_close_statewill be saved
+save_close_state = []
+# first index equal 0
+save_close_state.append(0)
+
 # gpio libraries
 import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM)
@@ -74,6 +84,20 @@ GPIO.setup(12,GPIO.OUT)
 
 # set pin 16 as output (KETTEL)
 GPIO.setup(16,GPIO.OUT)
+
+# Servo Control
+import time
+import wiringpi
+# use 'GPIO naming'
+wiringpi.wiringPiSetupGpio()
+# set #18 to be a PWM output
+wiringpi.pinMode(18, wiringpi.GPIO.PWM_OUTPUT)
+# set the PWM mode to milliseconds stype
+wiringpi.pwmSetMode(wiringpi.GPIO.PWM_MODE_MS)
+# divide down clock
+wiringpi.pwmSetClock(192)
+wiringpi.pwmSetRange(2000)
+delay_period = 0.01
 
 ######################################
 # Skill name: derby uni project
@@ -289,6 +313,34 @@ def ketteloff():
         print("Stopping Kettel")
         GPIO.output(16,GPIO.LOW)
         return statement("Turning Kettel off")
+
+@ask.intent("OpenIntent")
+# opens servo
+def openservo():
+    if(save_open_state[0] == 1):
+        print("Servo is already OPEN. Not action taken.")
+        return statement("Servo is already OPEN. Not action taken.")
+    else:
+        save_open_state[0] = 1
+        print("Opening Servo")
+        for pulse in range(100, 220, 1):
+            wiringpi.pwmWrite(18, pulse)
+            time.sleep(delay_period)
+        return statement("Opening Servo")
+
+@ask.intent("CloseIntent")
+# closes servo
+def closeservo():
+    if(save_close_state[0] == 0):
+        print("Servo is already Closed. Not action taken.")
+        return statement("Servo is already Closed. Not action taken.")
+    else:
+        save_close_state[0] = 1
+        print("Closing Servo")
+        for pulse in range(220, 100, -1):
+            wiringpi.pwmWrite(18, pulse)
+            time.sleep(delay_period)
+        return statement("Closing Servo")
 
 # stop
 @ask.intent("AMAZON.StopIntent")
