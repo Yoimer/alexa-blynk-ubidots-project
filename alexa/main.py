@@ -57,7 +57,7 @@ save_open_state.append(0)
 # list where save_close_statewill be saved
 save_close_state = []
 # first index equal 0
-save_close_state.append(0)
+save_close_state.append(-1)
 
 # gpio libraries
 import RPi.GPIO as GPIO
@@ -322,6 +322,7 @@ def openservo():
         return statement("Servo is already OPEN. Not action taken.")
     else:
         save_open_state[0] = 1
+        save_close_state[0] = 1
         print("Opening Servo")
         for pulse in range(100, 220, 1):
             wiringpi.pwmWrite(18, pulse)
@@ -335,7 +336,8 @@ def closeservo():
         print("Servo is already Closed. Not action taken.")
         return statement("Servo is already Closed. Not action taken.")
     else:
-        save_close_state[0] = 1
+        save_close_state[0] = 0
+        save_open_state[0] = 0
         print("Closing Servo")
         for pulse in range(220, 100, -1):
             wiringpi.pwmWrite(18, pulse)
